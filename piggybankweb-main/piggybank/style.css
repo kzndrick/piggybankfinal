@@ -1,0 +1,1182 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #ff8ee0 0%, #ffe3fa 100%);
+    min-height: 100vh;
+    background-image: url('background.jpg'), linear-gradient(120deg, #ff8ee0cc 0%, #ffe3facc 100%);
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    background-position: center;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.45);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container, .piggybank-container, .transaction-container {
+    position: relative;
+    z-index: 1;
+}
+
+.input-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-icon input {
+    padding-left: 2.2rem !important;
+}
+.input-icon .icon {
+    position: absolute;
+    left: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.2rem;
+    height: 1.2rem;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    border-radius: 18px;
+    margin: 2vw auto;
+    max-width: 1100px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.left-panel {
+    background: linear-gradient(135deg, #ff8ee0 60%, #ffb6f9 100%);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 320px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: rgba(255,255,255,0.18);
+    padding: 2rem 4rem;
+    border-radius: 12px;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 24px 0 rgba(255, 142, 224, 0.15);
+    text-shadow: 1px 2px 8px #ffb6f9;
+}
+
+.right-panel {
+    background: #f8f8fa;
+    flex: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 350px;
+}
+
+.form {
+    background: #fff;
+    padding: 2.5rem 2.5rem 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.08);
+    min-width: 340px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.form h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: #ff8ee0;
+    letter-spacing: 1px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    margin-top: 0.7rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.form input[type="text"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.5rem;
+    border: 1.5px solid #ffb6f9;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f8f8fa;
+    transition: border 0.2s;
+}
+
+.form input[type="text"]:focus,
+.form input[type="password"]:focus {
+    border: 1.5px solid #ff8ee0;
+    outline: none;
+}
+
+.show-password {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.97rem;
+    color: #888;
+}
+
+.show-password label {
+    margin-left: 0.5rem;
+    font-size: 0.97rem;
+}
+
+.btn {
+    background: linear-gradient(90deg, #ff8ee0 60%, #ffb6f9 100%);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    border-radius: 7px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.10);
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #e06fc7 60%, #ff8ee0 100%);
+    box-shadow: 0 4px 16px 0 rgba(255, 142, 224, 0.18);
+}
+
+.form-footer {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: #888;
+}
+
+.form-footer a {
+    color: #ff8ee0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.form-footer a:hover {
+    color: #e06fc7;
+}
+
+/* Piggybank Main Page */
+.piggybank-container {
+    background: #fff;
+    border-radius: 18px;
+    margin: 2rem auto;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    max-width: 1100px;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.currency-section {
+    flex: 2;
+    padding: 2rem 2rem 2rem 3rem;
+    background: #f8f8fa;
+    border-radius: 12px;
+    margin: 1rem 0 1rem 1rem;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+}
+
+.currency-section h3 {
+    margin-bottom: 0.5rem;
+    color: #ff8ee0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.currency-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.currency-list span {
+    background: #fff;
+    border: 2px solid #ffb6f9;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    min-width: 120px;
+    text-align: center;
+    font-weight: 600;
+    color: #c94fa0;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+    transition: background 0.2s, color 0.2s;
+}
+.currency-list span:hover {
+    background: #ff8ee0;
+    color: #fff;
+}
+
+.currency-list.bills span {
+    min-width: 170px;
+}
+
+.piggybank-panel {
+    flex: 1.2;
+    background: #fff0fa;
+    border-radius: 16px;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(255, 142, 224, 0.10);
+    margin: 1rem 1.5rem 1rem 0;
+}
+
+.welcome {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #c94fa0;
+}
+
+.total-amount {
+    font-size: 1.3rem;
+    margin: 1.2rem 0;
+    font-weight: 700;
+    color: #ff8ee0;
+}
+
+.piggybank-img {
+    font-size: 6rem;
+    margin: 1.5rem 0;
+    filter: drop-shadow(0 2px 8px #ffb6f9);
+}
+
+.piggybank-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Transaction History */
+.transaction-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2.5rem 3rem;
+    background: #fff;
+    border-radius: 18px;
+    margin: 2rem auto;
+    max-width: 900px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+}
+
+.transaction-title {
+    color: #ff8ee0;
+    margin-bottom: 0.5rem;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.student-id {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #c94fa0;
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background: #fff0fa;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+}
+
+.transaction-table th, .transaction-table td {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    border-bottom: 1.5px solid #ffb6f9;
+    font-size: 1.05rem;
+}
+
+.transaction-table th {
+    background: linear-gradient(90deg, #ff8ee0 60%, #ffb6f9 100%);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.transaction-table tr:nth-child(even) td {
+    background: #fff7fc;
+}
+
+.transaction-table tr:last-child td {
+    border-bottom: none;
+}
+
+.go-back-btn {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+    .container, .piggybank-container, .transaction-container {
+        flex-direction: column !important;
+        min-width: 0;
+        max-width: 98vw;
+        padding: 1rem 0.5rem;
+    }
+    .left-panel, .right-panel, .currency-section, .piggybank-panel {
+        min-width: 0;
+        width: 100%;
+        margin: 0;
+        padding: 1rem !important;
+    }
+    .currency-section {
+        padding-left: 1rem !important;
+    }
+}
+
+/***** DARK THEME *****/
+body.dark-theme {
+    background: linear-gradient(120deg, #2d1836 0%, #3a2a4d 100%);
+    background-image: url('background.jpg'), linear-gradient(120deg, #2d1836cc 0%, #3a2a4dcc 100%);
+    background-blend-mode: multiply;
+    color: #f3eaff;
+}
+body.dark-theme::before {
+    background: rgba(30, 20, 40, 0.55);
+}
+body.dark-theme .container,
+body.dark-theme .piggybank-container,
+body.dark-theme .transaction-container {
+    background: #2d1836;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+}
+body.dark-theme .left-panel {
+    background: linear-gradient(135deg, #6d3a7b 60%, #b86fc6 100%);
+}
+body.dark-theme .logo {
+    background: rgba(60, 30, 80, 0.18);
+    color: #ffe3fa;
+    text-shadow: 1px 2px 8px #b86fc6;
+}
+body.dark-theme .right-panel {
+    background: #23132e;
+}
+body.dark-theme .form {
+    background: #2d1836;
+    box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.18);
+}
+body.dark-theme .form h2 {
+    color: #b86fc6;
+}
+body.dark-theme .form label {
+    color: #e0c6f7;
+}
+body.dark-theme .form input[type="text"],
+body.dark-theme .form input[type="password"] {
+    background: #23132e;
+    border: 1.5px solid #b86fc6;
+    color: #ffe3fa;
+}
+body.dark-theme .form input[type="text"]:focus,
+body.dark-theme .form input[type="password"]:focus {
+    border: 1.5px solid #ff8ee0;
+}
+body.dark-theme .show-password,
+body.dark-theme .form-footer {
+    color: #bfa6d9;
+}
+body.dark-theme .form-footer a {
+    color: #b86fc6;
+}
+body.dark-theme .form-footer a:hover {
+    color: #ff8ee0;
+}
+body.dark-theme .btn {
+    background: linear-gradient(90deg, #b86fc6 60%, #6d3a7b 100%);
+    color: #fff;
+}
+body.dark-theme .btn:hover {
+    background: linear-gradient(90deg, #ff8ee0 60%, #b86fc6 100%);
+}
+body.dark-theme .currency-section {
+    background: #23132e;
+    box-shadow: 0 2px 8px 0 rgba(184, 111, 198, 0.10);
+}
+body.dark-theme .currency-list span {
+    background: #2d1836;
+    border: 2px solid #b86fc6;
+    color: #ffe3fa;
+}
+body.dark-theme .currency-list span:hover {
+    background: #b86fc6;
+    color: #fff;
+}
+body.dark-theme .piggybank-panel {
+    background: #23132e;
+    box-shadow: 0 2px 8px rgba(184, 111, 198, 0.10);
+}
+body.dark-theme .welcome {
+    color: #ffe3fa;
+}
+body.dark-theme .total-amount {
+    color: #b86fc6;
+}
+body.dark-theme .piggybank-img {
+    filter: drop-shadow(0 2px 8px #b86fc6);
+}
+body.dark-theme .transaction-title {
+    color: #b86fc6;
+}
+body.dark-theme .student-id {
+    color: #ffe3fa;
+}
+body.dark-theme .transaction-table {
+    background: #23132e;
+    box-shadow: 0 2px 8px 0 rgba(184, 111, 198, 0.10);
+}
+body.dark-theme .transaction-table th {
+    background: linear-gradient(90deg, #b86fc6 60%, #6d3a7b 100%);
+    color: #fff;
+}
+body.dark-theme .transaction-table td {
+    color: #ffe3fa;
+}
+body.dark-theme .transaction-table tr:nth-child(even) td {
+    background: #2d1836;
+}
+
+.currency-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+.currency-item:hover {
+    box-shadow: 0 0 0 3px #ff8ee055;
+    background: #ffe3fa;
+}
+body.dark-theme .currency-item:hover {
+    background: #3a2a4d;
+    box-shadow: 0 0 0 3px #b86fc655;
+}
+.currency-counter {
+    display: inline-block;
+    min-width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.5em;
+    background: #ff8ee0;
+    color: #fff;
+    font-size: 0.95em;
+    font-weight: bold;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5em;
+    vertical-align: middle;
+    box-shadow: 0 1px 4px 0 #ff8ee055;
+    position: relative;
+    top: -2px;
+    pointer-events: none;
+}
+body.dark-theme .currency-counter {
+    background: #b86fc6;
+    color: #fff;
+    box-shadow: 0 1px 4px 0 #b86fc655;
+}
+
+.dashboard-main {
+    padding: 2.5rem 2rem 2rem 2rem;
+    min-height: 100vh;
+    background: transparent;
+    display: block;
+}
+
+.piggybank-summary {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+    padding: 2rem 2rem 1.5rem 2rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+.total-savings {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #c94fa0;
+    margin-bottom: 1.2rem;
+}
+/* Deposit Buttons */
+.deposit-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.deposit-btn {
+    background: #fff;
+    border: 2px solid #ffb6f9;
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.1rem;
+    min-width: 80px;
+    text-align: center;
+    font-weight: 600;
+    color: #c94fa0;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.deposit-btn:hover {
+    background: #ff8ee0;
+    color: #fff;
+}
+
+body.dark-theme .deposit-btn {
+    background: #2d1836;
+    border: 2px solid #b86fc6;
+    color: #ffe3fa;
+}
+
+body.dark-theme .deposit-btn:hover {
+    background: #b86fc6;
+    color: #fff;
+}
+.savings-goal {
+    margin-top: 1.2rem;
+}
+.savings-goal label {
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+#goal-amount {
+    width: 120px;
+    padding: 0.5rem 1rem;
+    border: 1.5px solid #ffb6f9;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f8f8fa;
+    margin-right: 1rem;
+}
+.progress-bar-bg {
+    width: 100%;
+    height: 18px;
+    background: #ffe3fa;
+    border-radius: 9px;
+    margin: 0.7rem 0 0.3rem 0;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff8ee0 60%, #ffb6f9 100%);
+    border-radius: 9px;
+    transition: width 0.4s;
+}
+.goal-label {
+    font-size: 1rem;
+    color: #c94fa0;
+    font-weight: 500;
+}
+
+/* Expense Tracker */
+#dashboard-expenses {
+    max-width: 900px;
+}
+
+/* Add Category Container */
+.add-category-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.add-category-container input {
+    padding: 0.6rem 1rem;
+    border: 1.5px solid #ffb6f9;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f8f8fa;
+    flex-grow: 1;
+    max-width: 250px;
+}
+
+.btn-small {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+}
+
+body.dark-theme .add-category-container input {
+    background: #23132e;
+    border: 1.5px solid #b86fc6;
+    color: #ffe3fa;
+}
+.expense-form {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+.expense-form select,
+.expense-form input[type="number"],
+.expense-form input[type="text"],
+.expense-form input[type="date"] {
+    padding: 0.6rem 1rem;
+    border: 1.5px solid #ffb6f9;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f8f8fa;
+}
+.expense-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+}
+.expense-table th, .expense-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+.expense-table th {
+    background: #ff8ee0;
+    color: #fff;
+    font-weight: 600;
+}
+.expense-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Analytics Placeholder */
+.analytics-placeholder {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+    padding: 2rem;
+    color: #c94fa0;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .piggybank-summary, .analytics-placeholder {
+        padding: 1rem;
+    }
+}
+@media (max-width: 600px) {
+    .piggybank-summary, .analytics-placeholder {
+        padding: 1rem;
+    }
+}
+/* Dark theme for dashboard */
+body.dark-theme .piggybank-summary,
+body.dark-theme .analytics-placeholder {
+    background: #2d1836;
+    color: #ffe3fa;
+}
+body.dark-theme .expense-table {
+    background: #23132e;
+}
+body.dark-theme .expense-table th {
+    background: #b86fc6;
+}
+body.dark-theme .expense-table td {
+    color: #ffe3fa;
+}
+
+.dashboard-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+    letter-spacing: 1px;
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.dashboard-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.08);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+}
+.piggybank-img-large {
+    font-size: 5rem;
+    margin-bottom: 1.2rem;
+    filter: drop-shadow(0 2px 8px #ffb6f9);
+}
+.total-savings-main {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #c94fa0;
+    margin-bottom: 1.2rem;
+}
+.analytics-card {
+    width: 100%;
+    min-width: 0;
+}
+.analytics-totals {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    color: #c94fa0;
+    font-weight: 600;
+}
+#categoryChart {
+    margin-top: 1rem;
+    width: 100% !important;
+    max-width: 320px;
+    background: #fff0fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 0 rgba(255, 142, 224, 0.07);
+}
+.expense-card {
+    width: 100%;
+    min-width: 0;
+}
+@media (max-width: 1100px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+    }
+}
+@media (max-width: 800px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .dashboard-card {
+        padding: 1.2rem 0.7rem 1rem 0.7rem;
+    }
+    .dashboard-title {
+        font-size: 2rem;
+    }
+}
+body.dark-theme .dashboard-title {
+    color: #ffe3fa;
+}
+body.dark-theme .dashboard-card {
+    background: #2d1836;
+    color: #ffe3fa;
+}
+body.dark-theme .analytics-totals {
+    color: #b86fc6;
+}
+body.dark-theme #categoryChart {
+    background: #23132e;
+}
+body.dark-theme .total-savings-main {
+    color: #b86fc6;
+}
+
+.deposit-controls {
+    width: 100%;
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+.deposit-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 0.2rem;
+}
+.bill-label {
+    min-width: 60px;
+    font-weight: 600;
+    color: #c94fa0;
+    font-size: 1.1rem;
+}
+.deposit-minus, .deposit-plus {
+    background: #fff;
+    border: 2px solid #ffb6f9;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.3rem;
+    color: #c94fa0;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.deposit-minus:hover, .deposit-plus:hover {
+    background: #ff8ee0;
+    color: #fff;
+}
+.deposit-count {
+    min-width: 2.2em;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    background: #f8f8fa;
+    border-radius: 6px;
+    padding: 0.2em 0.7em;
+    border: 1px solid #ffb6f9;
+}
+.deposit-summary {
+    margin-top: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+}
+.deposit-summary #deposit-total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #c94fa0;
+}
+body.dark-theme .deposit-minus, body.dark-theme .deposit-plus {
+    background: #2d1836;
+    border: 2px solid #b86fc6;
+    color: #ffe3fa;
+}
+body.dark-theme .deposit-minus:hover, body.dark-theme .deposit-plus:hover {
+    background: #b86fc6;
+    color: #fff;
+}
+body.dark-theme .deposit-count {
+    background: #23132e;
+    color: #ffe3fa;
+    border: 1px solid #b86fc6;
+}
+
+/* Savings goal in analytics card */
+.analytics-card .savings-goal {
+    margin-top: 1.2rem;
+    width: 100%;
+}
+.analytics-card .goal-label {
+    color: #c94fa0;
+}
+body.dark-theme .analytics-card .goal-label {
+    color: #b86fc6;
+}
+
+/* Expense form for custom name/amount */
+.expense-form {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+.expense-form input[type="text"],
+.expense-form input[type="number"],
+.expense-form input[type="date"] {
+    padding: 0.6rem 1rem;
+    border: 1.5px solid #ffb6f9;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #f8f8fa;
+}
+body.dark-theme .expense-form input[type="text"],
+body.dark-theme .expense-form input[type="number"],
+body.dark-theme .expense-form input[type="date"] {
+    background: #23132e;
+    border: 1.5px solid #b86fc6;
+    color: #ffe3fa;
+}
+
+.expense-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+.expense-cat-btn {
+    background: #fff;
+    border: 2px solid #ffb6f9;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #c94fa0;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.expense-cat-btn.selected, .expense-cat-btn:active {
+    background: #ff8ee0;
+    color: #fff;
+    border-color: #ff8ee0;
+}
+.expense-cat-btn:hover {
+    background: #ffe3fa;
+    color: #c94fa0;
+}
+body.dark-theme .expense-cat-btn {
+    background: #2d1836;
+    border: 2px solid #b86fc6;
+    color: #ffe3fa;
+}
+body.dark-theme .expense-cat-btn.selected, body.dark-theme .expense-cat-btn:active {
+    background: #b86fc6;
+    color: #fff;
+    border-color: #b86fc6;
+}
+body.dark-theme .expense-cat-btn:hover {
+    background: #3a2a4d;
+    color: #ffe3fa;
+}
+.expense-table th, .expense-table td {
+    text-align: center;
+}
+
+.analytics-btn {
+    margin-top: 1.5rem;
+    background: #4b7c4b;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 0.8rem 2.5rem;
+    box-shadow: 0 2px 8px 0 rgba(76, 175, 80, 0.10);
+    transition: background 0.2s;
+}
+.analytics-btn:hover {
+    background: #3a5f3a;
+}
+.back-btn {
+    background: #fff;
+    color: #4b7c4b;
+    border: 2px solid #4b7c4b;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    margin-top: 0.2rem;
+    padding: 0.5rem 1.5rem;
+    transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover {
+    background: #4b7c4b;
+    color: #fff;
+}
+.analytics-focused {
+    max-width: 480px;
+    margin: 0 auto;
+    align-items: stretch;
+    box-shadow: 0 8px 32px 0 rgba(76, 175, 80, 0.10);
+}
+.dashboard-grid.single-card {
+    grid-template-columns: 1fr;
+    gap: 0;
+    justify-content: center;
+}
+.analytics-table-wrap {
+    margin-top: 2rem;
+    width: 100%;
+    overflow-x: auto;
+}
+@media (max-width: 600px) {
+    .analytics-focused {
+        max-width: 98vw;
+        padding: 0.5rem;
+    }
+}
+body.dark-theme .analytics-btn {
+    background: #2d4b2d;
+    color: #fff;
+}
+body.dark-theme .analytics-btn:hover {
+    background: #1e331e;
+}
+body.dark-theme .back-btn {
+    background: #2d1836;
+    color: #4b7c4b;
+    border: 2px solid #4b7c4b;
+}
+body.dark-theme .back-btn:hover {
+    background: #4b7c4b;
+    color: #fff;
+}
+
+/* Dark theme for dashboard */
+body.dark-theme .dashboard-main {
+    background: transparent;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px; /* Adjust width as needed */
+    background: #fff;
+    padding: 1.5rem 1rem;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* Add positioning if needed, e.g., position: fixed; height: 100vh; */
+}
+
+body.dark-theme .sidebar {
+    background: #2d1836; /* Dark theme background */
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+body.dark-theme .sidebar-header {
+    border-bottom: 1px solid #4a2a5b; /* Dark theme border */
+}
+
+.sidebar-header .logo {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    /* Existing logo styles will apply, adjust if necessary */
+}
+
+.sidebar-header .user-info .student-id {
+    font-size: 1rem;
+    color: #c94fa0; /* Theme accent color */
+    font-weight: 600;
+}
+
+body.dark-theme .sidebar-header .user-info .student-id {
+    color: #b86fc6; /* Dark theme accent color */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+body.dark-theme .sidebar-nav a {
+    color: #ffe3fa; /* Dark theme text color */
+}
+
+.sidebar-nav a:hover {
+    background: #ffe3fa; /* Light hover background */
+    color: #c94fa0; /* Theme accent color */
+}
+
+body.dark-theme .sidebar-nav a:hover {
+    background: #3a2a4d; /* Dark theme hover background */
+    color: #b86fc6; /* Dark theme accent color */
+}
+
+.sidebar-nav a.active { /* Style for active/selected link */
+    background: #ff8ee0; /* Theme accent background */
+    color: #fff;
+    font-weight: 600;
+}
+
+body.dark-theme .sidebar-nav a.active {
+    background: #b86fc6; /* Dark theme accent background */
+    color: #fff;
+}
+
+/* You might need to adjust the layout of the main content to accommodate the sidebar */
+/* For example, using flexbox or grid on the body or a main container */
+
+/* Add styles for the main app container */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f8f8fa; /* Background for the main content area */
+}
+
+body.dark-theme .app-container {
+    background: #23132e; /* Dark theme background */
+}
+
+/* Adjust main content area to take remaining space */
+.main-content {
+    flex-grow: 1;
+    padding: 1.5rem; /* Add some padding around the content */
+    overflow-y: auto; /* Add scrolling if content overflows */
+}
+
+/* Adjustments to existing styles to fit the new layout */
+.dashboard-main, #analytics-section {
+    width: 100%; /* Ensure main content sections take full width of their container */
+    max-width: none; /* Remove max-width if previously set and conflicting */
+    margin: 0; /* Remove auto margins if previously centering */
+    padding: 0; /* Adjust padding as needed, already have padding on .main-content */
+}
+
+/* Add styles for the chart container */
+.chart-container {
+    position: relative; /* Needed for chart.js responsiveness */
+    margin: auto; /* Center the chart */
+    height: 350px; /* Set a height */
+    width: 350px; /* Set a width */
+    max-height: 350px; /* Maximum height */
+    max-width: 350px; /* Maximum width */
+}
